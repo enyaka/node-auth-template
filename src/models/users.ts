@@ -3,7 +3,8 @@ import {Schema, Document, model} from "mongoose";
 export interface IUser extends Document{
     username: string,
     email: string,
-    password: string
+    password: string,
+    _refreshToken: string
 }
 
 const UserSchema: Schema = new Schema<IUser>({
@@ -24,7 +25,10 @@ const UserSchema: Schema = new Schema<IUser>({
         type: String,
         minLength: 6,
         required: true
-    }
+    },
+    _refreshToken: {
+        type: String,
+    },
 })
 
 export default model<IUser>('User', UserSchema);

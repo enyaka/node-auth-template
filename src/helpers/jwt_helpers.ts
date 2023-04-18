@@ -11,9 +11,9 @@ class TokenCredentials implements ITokenCredantials {
     refresh_token: string;
 }
 
-function setNewUserJWT(email: string, username: string): ITokenCredantials {
-    const access_token = jwt.sign({ email, username }, process.env.ACCESS_SECRET, {expiresIn: "1m"});
-    const refresh_token = jwt.sign({ email, username }, process.env.REFRESH_SECRET, {expiresIn: "1h"});
+function createJWT(email: string, username: string): ITokenCredantials {
+    const access_token = jwt.sign({ email, username }, process.env.ACCESS_SECRET, {expiresIn: "15m"});
+    const refresh_token = jwt.sign({ email, username }, process.env.REFRESH_SECRET, {expiresIn: "30d"});
     const token: ITokenCredantials = new TokenCredentials();
     token.access_token = access_token;
     token.refresh_token = refresh_token;
@@ -22,4 +22,4 @@ function setNewUserJWT(email: string, username: string): ITokenCredantials {
 }
 
 
-export default { setNewUserJWT }
+export default { createJWT }
