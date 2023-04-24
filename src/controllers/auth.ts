@@ -45,7 +45,7 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
                 refreshToken: tokens.refresh_token,
                 })
         } else {
-            res.status(401).json({ err: "Wrong password" })
+            res.status(400).json({ err: "Wrong password" })
         }
     } else {
         res.status(404).json({ err:  "User not found"})

@@ -7,10 +7,7 @@ export const checkAuth = (req: Request, res: Response, next: NextFunction) => {
     if (!authHeader) {
     return res.status(401).json({ error: 'Authorization header missing' });
     }
-
     const token = authHeader.split(' ')[1];
-    console.log(token);
-
     if (!token) {
     return res.status(401).json({ error: 'Token missing from Authorization header' });
     }
